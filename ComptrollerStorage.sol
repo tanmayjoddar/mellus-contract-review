@@ -98,8 +98,9 @@ contract ComptrollerV3Storage is ComptrollerV2Storage {
         // The market's last updated compBorrowIndex or compSupplyIndex
         uint224 index;
 
-        // The block number the index was last updated at
-        uint32 block;
+       // Changed from uint32 to uint48 to prevent DoS when block.timestamp
+       // exceeds 2^32 (~Feb 2106). uint48 is safe until year ~8,921,556.
+       uint48 block;
     }
 
     /// @notice A list of all markets
